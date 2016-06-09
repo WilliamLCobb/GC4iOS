@@ -76,7 +76,6 @@
 		CA418EBA1D09C044001B7664 /* libxxhash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418EA41D09C044001B7664 /* libxxhash.a */; };
 		CA418EBC1D09C055001B7664 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418EBB1D09C055001B7664 /* libz.tbd */; };
 		CA418EBE1D09C077001B7664 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418EBD1D09C077001B7664 /* libiconv.tbd */; };
-		CA418EC21D09C244001B7664 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA418EC01D09C244001B7664 /* Entitlements.plist */; };
 		CA418EC51D09C35F001B7664 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418EC41D09C35F001B7664 /* CoreAudio.framework */; };
 		CA418EC71D09C365001B7664 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418EC61D09C365001B7664 /* AudioToolbox.framework */; };
 		CA418EC91D09C36A001B7664 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418EC81D09C36A001B7664 /* UIKit.framework */; };
@@ -85,11 +84,13 @@
 		CA418ECF1D09C380001B7664 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418ECE1D09C380001B7664 /* GLKit.framework */; };
 		CA418ED11D09C385001B7664 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418ED01D09C385001B7664 /* GameController.framework */; };
 		CA418ED31D09C38A001B7664 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA418ED21D09C38A001B7664 /* CoreMedia.framework */; };
-		CA418ED51D09C6E3001B7664 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA418EC11D09C244001B7664 /* main.m */; };
 		CA418EE91D09C8EF001B7664 /* Config in Resources */ = {isa = PBXBuildFile; fileRef = CA418EE51D09C8EF001B7664 /* Config */; };
 		CA418EEA1D09C8EF001B7664 /* GC in Resources */ = {isa = PBXBuildFile; fileRef = CA418EE61D09C8EF001B7664 /* GC */; };
 		CA418EEB1D09C8EF001B7664 /* Roms in Resources */ = {isa = PBXBuildFile; fileRef = CA418EE71D09C8EF001B7664 /* Roms */; };
 		CA418EEC1D09C8EF001B7664 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = CA418EE81D09C8EF001B7664 /* Shaders */; };
+		CA85B9931D09D30F00CE8F95 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA85B9901D09D30F00CE8F95 /* Entitlements.plist */; };
+		CA85B9951D09D30F00CE8F95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA85B9921D09D30F00CE8F95 /* main.m */; };
+		CA85B9991D09D35100CE8F95 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA85B9981D09D35100CE8F95 /* Info.plist */; };
 		CAB660571D09B9D600037854 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB660561D09B9D600037854 /* AppDelegate.m */; };
 		CAB6605D1D09B9D600037854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAB6605B1D09B9D600037854 /* Main.storyboard */; };
 		CAB6605F1D09B9D600037854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB6605E1D09B9D600037854 /* Assets.xcassets */; };
@@ -199,9 +200,6 @@
 		CA418EA41D09C044001B7664 /* libxxhash.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxxhash.a; sourceTree = "<group>"; };
 		CA418EBB1D09C055001B7664 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		CA418EBD1D09C077001B7664 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		CA418EBF1D09C244001B7664 /* Dolphin-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Dolphin-Prefix.pch"; path = "GC4iOS/Dolphin-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		CA418EC01D09C244001B7664 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = GC4iOS/Entitlements.plist; sourceTree = SOURCE_ROOT; };
-		CA418EC11D09C244001B7664 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GC4iOS/main.m; sourceTree = SOURCE_ROOT; };
 		CA418EC41D09C35F001B7664 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		CA418EC61D09C365001B7664 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CA418EC81D09C36A001B7664 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -218,13 +216,16 @@
 		CA418EE61D09C8EF001B7664 /* GC */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GC; sourceTree = "<group>"; };
 		CA418EE71D09C8EF001B7664 /* Roms */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roms; sourceTree = "<group>"; };
 		CA418EE81D09C8EF001B7664 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
+		CA85B98F1D09D30F00CE8F95 /* Dolphin-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dolphin-Prefix.pch"; sourceTree = "<group>"; };
+		CA85B9901D09D30F00CE8F95 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		CA85B9921D09D30F00CE8F95 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CA85B9981D09D35100CE8F95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GC4iOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		CAB6604F1D09B9D600037854 /* GC4iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GC4iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB660551D09B9D600037854 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CAB660561D09B9D600037854 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CAB6605C1D09B9D600037854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAB6605E1D09B9D600037854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAB660611D09B9D600037854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CAB660631D09B9D600037854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAB660681D09B9D600037854 /* GC4iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GC4iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB6606C1D09B9D600037854 /* GC4iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GC4iOSTests.m; sourceTree = "<group>"; };
 		CAB6606E1D09B9D600037854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -290,17 +291,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CA418DB61D09BE56001B7664 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CA418EBF1D09C244001B7664 /* Dolphin-Prefix.pch */,
-				CA418EC01D09C244001B7664 /* Entitlements.plist */,
-				CA418EC11D09C244001B7664 /* main.m */,
-			);
-			name = "Supporting Files";
-			path = ../../../dolphin/Build/DolphiniOS;
-			sourceTree = "<group>";
-		};
 		CA418DED1D09BEA2001B7664 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +519,17 @@
 			path = GC4iOS/Resources;
 			sourceTree = "<group>";
 		};
+		CA85B98E1D09D30F00CE8F95 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CA85B98F1D09D30F00CE8F95 /* Dolphin-Prefix.pch */,
+				CA85B9901D09D30F00CE8F95 /* Entitlements.plist */,
+				CA85B9921D09D30F00CE8F95 /* main.m */,
+				CA85B9981D09D35100CE8F95 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		CAB660461D09B9D600037854 = {
 			isa = PBXGroup;
 			children = (
@@ -565,9 +566,8 @@
 				CAB660601D09B9D600037854 /* LaunchScreen.storyboard */,
 				CA418D7E1D09BE56001B7664 /* Info.plist */,
 				CA418E1D1D09BEE2001B7664 /* Images */,
+				CA85B98E1D09D30F00CE8F95 /* Supporting Files */,
 				CA418E071D09BEB9001B7664 /* Utilities */,
-				CA418DB61D09BE56001B7664 /* Supporting Files */,
-				CAB660631D09B9D600037854 /* Info.plist */,
 			);
 			path = GC4iOS;
 			sourceTree = "<group>";
@@ -699,12 +699,14 @@
 				CA418E491D09BEE2001B7664 /* gcpad_dpad_pressed_downleft@2x.png in Resources */,
 				CA418E5B1D09BEE2001B7664 /* gcpad_y@2x.png in Resources */,
 				CA418E451D09BEE2001B7664 /* gcpad_c@2x.png in Resources */,
+				CA85B9931D09D30F00CE8F95 /* Entitlements.plist in Resources */,
 				CA418E441D09BEE2001B7664 /* gcpad_b_pressed@2x.png in Resources */,
 				CA418E5C1D09BEE2001B7664 /* gcpad_y_pressed@2x.png in Resources */,
 				CAB660621D09B9D600037854 /* LaunchScreen.storyboard in Resources */,
 				CA418E461D09BEE2001B7664 /* gcpad_c_pressed@2x.png in Resources */,
 				CA418E421D09BEE2001B7664 /* gcpad_a_pressed@2x.png in Resources */,
 				CA418E4B1D09BEE2001B7664 /* gcpad_dpad_pressed_left@2x.png in Resources */,
+				CA85B9991D09D35100CE8F95 /* Info.plist in Resources */,
 				CA418E571D09BEE2001B7664 /* gcpad_start@2x.png in Resources */,
 				CA418E4F1D09BEE2001B7664 /* gcpad_dpad_pressed_upright@2x.png in Resources */,
 				CAB6605F1D09B9D600037854 /* Assets.xcassets in Resources */,
@@ -721,7 +723,6 @@
 				CA418E601D09BEE2001B7664 /* ic_wii.png in Resources */,
 				CA418E5D1D09BEE2001B7664 /* gcpad_z@2x.png in Resources */,
 				CA418EEB1D09C8EF001B7664 /* Roms in Resources */,
-				CA418EC21D09C244001B7664 /* Entitlements.plist in Resources */,
 				CA418E531D09BEE2001B7664 /* gcpad_l@2x.png in Resources */,
 				CA418E501D09BEE2001B7664 /* gcpad_joystick@2x.png in Resources */,
 				CA418EEA1D09C8EF001B7664 /* GC in Resources */,
@@ -757,12 +758,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA418ED51D09C6E3001B7664 /* main.m in Sources */,
 				CA418DFF1D09BEA2001B7664 /* DolphinBridge.mm in Sources */,
 				CA418E031D09BEA2001B7664 /* WCDirectionalControl.m in Sources */,
 				CA418E1C1D09BEB9001B7664 /* UIViewController+BackButtonHandler.m in Sources */,
 				CAB660571D09B9D600037854 /* AppDelegate.m in Sources */,
 				CA418E181D09BEB9001B7664 /* MHWDirectoryWatcher.m in Sources */,
+				CA85B9951D09D30F00CE8F95 /* main.m in Sources */,
 				CA418E021D09BEA2001B7664 /* GCControllerView.m in Sources */,
 				CA418E061D09BEA2001B7664 /* RomTableViewController.m in Sources */,
 				CA418E041D09BEA2001B7664 /* EmulatorViewController.mm in Sources */,
