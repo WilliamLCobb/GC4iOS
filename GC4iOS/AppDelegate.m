@@ -15,8 +15,9 @@
 		                                           attributes:nil
 		                                                error:nil];
 	}
-
-	//syscall(26, -1, 0, 0, 0); //Allows mapping executable pages for JIT
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+	syscall(26, -1, 0, 0, 0); //Allows mapping executable pages for JIT
 	return YES;
 }
 

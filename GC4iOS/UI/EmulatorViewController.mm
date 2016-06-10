@@ -21,8 +21,6 @@
 @interface EmulatorViewController () <GLKViewDelegate, GCControllerViewDelegate> {
 	DolphinBridge*		bridge;
 	GCControllerView*	controllerView;
-	u16 buttonState;
-	CGPoint joyData[2];
 }
 
 @property (strong, nonatomic) EAGLContext* context;
@@ -57,6 +55,23 @@
 }
 
 #pragma mark - Controller Delegate
+
+u16 buttonState;
+CGPoint joyData[2];
+
+////This is a terrible hack. We need to configure dolphin to use a custom controller not just override this function
+void GCPad::GetInput(GCPadStatus* const pad)
+{
+    pad->button = buttonState;
+    
+    printf("%f %f", joyData[0].x, joyData[1].x);
+    
+    pad->stickX = (int)joyData[0].x;
+    pad->stickY = (int)joyData[0].y;
+    
+    pad->substickX = (int)joyData[1].x;
+    pad->substickY = (int)joyData[1].y;
+}
 
 // Create a new class to handle the controller later
 - (void)joystick:(NSInteger)joyid movedToPosition:(CGPoint)joyPosition
