@@ -30,7 +30,7 @@
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if (section == 0)
-		return 2;
+		return 1;
 	return 0;
 }
 
@@ -44,18 +44,10 @@
 	UITableViewCell* cell;
 	if (indexPath.section == 0)
 	{
-		if (indexPath.row == 0)
-		{
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Launch"];
-			cell.textLabel.text = @"Launch Normally";
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		}
-		else if (indexPath.row == 1)
-		{
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Launch"];
-			cell.textLabel.text = @"Launch with JIT (Needs jailbreak)";
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		}
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Launch"];
+        cell.textLabel.text = @"Launch Normally";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
 	}
 	else if (indexPath.section == 1)
 	{
@@ -69,14 +61,6 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	if (indexPath.section == 0 && indexPath.row == 0)
-	{
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"UseJIT"];
-	}
-	else
-	{
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"UseJIT"];
-	}
 	EmulatorViewController* emulatorView = [[EmulatorViewController alloc] init];
 	[self presentViewController:emulatorView animated:YES completion:^{
 		[emulatorView launchGame:self.game];

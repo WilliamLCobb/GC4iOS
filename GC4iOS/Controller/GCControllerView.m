@@ -145,8 +145,8 @@ enum PadButton
 
 - (void)dpadChanged:(WCDirectionalControl*)dpad
 {
-	_buttonState &=  ~(15 << dpad.tag); //Clear the 4 bits
-	_buttonState |= (dpad.direction << dpad.tag); //Set the 4 bits
+    _buttonState = ((_buttonState >> 4) << 4); //Clear the 4 bits
+	_buttonState |= dpad.direction; //Set the 4 bits
 	if ([self.delegate respondsToSelector:@selector(buttonStateChanged:)])
 	{
 		[self.delegate buttonStateChanged:self.buttonState];

@@ -73,7 +73,7 @@ void GCPad::GetInput(GCPadStatus* const pad)
 {
     pad->button = buttonState;
     
-    printf("%f %f", joyData[0].x, joyData[1].x);
+    //printf("%f %f\n", joyData[0].x, joyData[1].x);
     
     pad->stickX = (int)joyData[0].x;
     pad->stickY = (int)joyData[0].y;

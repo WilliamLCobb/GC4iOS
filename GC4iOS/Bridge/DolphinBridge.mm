@@ -197,12 +197,11 @@ void Host_ShowVideoConfig(void*, const std::string&, const std::string&)
 	// Dolphin
 	IniFile dolphinConfig;
 	dolphinConfig.Load(File::GetUserPath(D_CONFIG_IDX) + "Dolphin.ini");
-	BOOL useJIT = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseJIT"];
-	dolphinConfig.GetOrCreateSection("Core")->Set("CPUCore", useJIT ? PowerPC::CORE_JITARM64 : PowerPC::CORE_CACHEDINTERPRETER);
+	dolphinConfig.GetOrCreateSection("Core")->Set("CPUCore", PowerPC::CORE_JITARM64);
 	dolphinConfig.GetOrCreateSection("Core")->Set("CPUThread", YES);
 	dolphinConfig.GetOrCreateSection("Core")->Set("Fastmem", NO);
 	dolphinConfig.GetOrCreateSection("Core")->Set("GFXBackend", std::string("OGL"));
-	dolphinConfig.GetOrCreateSection("Core")->Set("FrameSkip", 5);
+	dolphinConfig.GetOrCreateSection("Core")->Set("FrameSkip", 5); //Doesn't work?
 
 	int scale = [UIScreen mainScreen].scale;
 	CGSize renderWindowSize = CGSizeMake(renderLayer.frame.size.width * scale, renderLayer.frame.size.height * scale);
