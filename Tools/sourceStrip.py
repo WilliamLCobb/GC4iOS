@@ -1,3 +1,5 @@
+#recursively stips non header files from a directory.
+
 import os
 
 myPath = os.path.dirname(os.path.realpath(__file__))

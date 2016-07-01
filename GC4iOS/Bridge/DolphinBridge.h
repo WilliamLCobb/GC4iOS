@@ -13,6 +13,6 @@
 
 @interface DolphinBridge : NSObject
 
--(void)openRomAtPath:(NSString*)path inView:(GLKView*)view;
+- (void)openRomAtPath:(NSString* )path inLayer:(CAEAGLLayer *)layer;
 
 @end

@@ -54,7 +54,7 @@
 {
 	if ([self isSystemApplication])
 	{
-		return [[self rootDocumentsPath] stringByAppendingPathComponent:@"Dolphin"];
+		return [[self rootDocumentsPath] stringByAppendingPathComponent:@"GC4iOS"];
 	}
 	else
 	{

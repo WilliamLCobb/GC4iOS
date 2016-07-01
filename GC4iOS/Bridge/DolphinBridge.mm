@@ -36,141 +36,7 @@
 
 #include "Common/Logging/ConsoleListener.h"
 
-GLKView* renderView;
-
-@implementation DolphinBridge : NSObject
-
-- (id)init
-{
-	if (self = [super init]) {
-		[self createUserFoldersAtPath:[AppDelegate libraryPath]];
-		[self copyResourcesToPath:[AppDelegate documentsPath]];
-		[self saveDefaultPreferences]; // Save every run until a settings ui is implemented.
-	}
-	return self;
-}
-
-- (void)openRomAtPath:(NSString* )path inView:(GLKView *)view;
-{
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-		renderView = view;
-		NSLog(@"Loading game at path: %@", path);
-		UICommon::Init();
-		
-		if (BootManager::BootCore([path UTF8String]))
-		{
-			NSLog(@"Booted Core");
-		}
-		else
-		{
-			NSLog(@"Unable to boot");
-			return;
-		}
-		while (!Core::IsRunning())
-		{
-			NSLog(@"Waiting for run");
-			usleep(100000);
-		}
-		while (Core::IsRunning())
-		{
-			updateMainFrameEvent.Wait();
-			Core::HostDispatchJobs();
-		}
-		UICommon::Shutdown();
-	});
-}
-
-- (void)saveDefaultPreferences
-{
-	// Must use std::string when passing in strings to config
-	// If you don't, the string will be passed as a bool and will always
-	// Evaluate to true
-
-	// Dolphin
-	IniFile dolphinConfig;
-	dolphinConfig.Load(File::GetUserPath(D_CONFIG_IDX) + "Dolphin.ini");
-	BOOL useJIT = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseJIT"];
-	dolphinConfig.GetOrCreateSection("Core")->Set("CPUCore", useJIT ? PowerPC::CORE_JITARM64 : PowerPC::CORE_CACHEDINTERPRETER);
-	dolphinConfig.GetOrCreateSection("Core")->Set("CPUThread", YES);
-	dolphinConfig.GetOrCreateSection("Core")->Set("Fastmem", NO);
-	dolphinConfig.GetOrCreateSection("Core")->Set("GFXBackend", std::string("OGL"));
-	dolphinConfig.GetOrCreateSection("Core")->Set("FrameSkip", 2);
-
-	int scale = [UIScreen mainScreen].scale;
-	CGSize renderWindowSize = CGSizeMake(renderView.frame.size.width * scale, renderView.frame.size.height * scale);
-	dolphinConfig.GetOrCreateSection("Display")->Set("RenderWindowWidth", (int)renderWindowSize.width);
-	dolphinConfig.GetOrCreateSection("Display")->Set("RenderWindowHeight", (int)renderWindowSize.height);
-	dolphinConfig.Save(File::GetUserPath(D_CONFIG_IDX) + "Dolphin.ini");
-
-	// OpenGL
-	IniFile oglConfig;
-	oglConfig.Load(File::GetUserPath(D_CONFIG_IDX) + "gfx_opengl.ini");
-
-	IniFile::Section* oglSettings = oglConfig.GetOrCreateSection("Settings");
-	oglSettings->Set("ShowFPS", YES);
-	oglSettings->Set("ExtendedFPSInfo", YES);
-	oglSettings->Set("EFBScale", 2);
-	oglSettings->Set("MSAA", 0);
-	oglSettings->Set("EnablePixelLighting", YES);
-	oglSettings->Set("DisableFog", NO);
-
-	IniFile::Section* oglEnhancements = oglConfig.GetOrCreateSection("Enhancements");
-	oglEnhancements->Set("MaxAnisotropy", 0);
-	oglEnhancements->Set("ForceFiltering", YES);
-	oglEnhancements->Set("StereoSwapEyes", NO);
-	oglEnhancements->Set("StereoMode", 0);
-	oglEnhancements->Set("StereoDepth", 20);
-	oglEnhancements->Set("StereoConvergence", 20);
-
-	IniFile::Section* oglHacks = oglConfig.GetOrCreateSection("Hacks");
-	oglHacks->Set("EFBScaledCopy", YES);
-	oglHacks->Set("EFBAccessEnable", NO);
-	oglHacks->Set("EFBEmulateFormatChanges", NO);
-	oglHacks->Set("EFBCopyEnable", NO);
-	oglHacks->Set("EFBToTextureEnable", YES);
-	oglHacks->Set("EFBCopyCacheEnable", YES);
-
-	oglConfig.Save(File::GetUserPath(D_CONFIG_IDX) + "gfx_opengl.ini");
-
-	// Move Controller Settings
-	NSString *configPath = [NSString stringWithCString:File::GetUserPath(D_CONFIG_IDX).c_str()
-	                                          encoding:NSUTF8StringEncoding];
-	//[self copyBundleDirectoryOrFile:@"Config/GCPadNew.ini" toPath:[configPath stringByAppendingPathComponent:@"GCPadNew.ini"]];
-	//[self copyBundleDirectoryOrFile:@"Config/WiimoteNew.ini" toPath:[configPath stringByAppendingPathComponent:@"WiimoteNew.ini.ini"]];
-}
-
--(void)copyResourcesToPath:(NSString*)resourcesPath
-{
-	NSFileManager* fileManager = [NSFileManager defaultManager];
-	if (![fileManager fileExistsAtPath: [resourcesPath stringByAppendingString:@"GC"]])
-	{
-		NSLog(@"Copying GC folder...");
-		[self copyBundleDirectoryOrFile:@"GC" toPath:resourcesPath];
-	}
-	if (![fileManager fileExistsAtPath: [resourcesPath stringByAppendingString:@"Shaders"]])
-	{
-		NSLog(@"Copying Shaders folder...");
-		[self copyBundleDirectoryOrFile:@"Shaders" toPath:resourcesPath];
-	}
-}
-
-- (void)copyBundleDirectoryOrFile:(NSString* )file toPath:(NSString*)destination
-{
-	NSString* source = [[[[NSBundle mainBundle] resourcePath] stringByAppendingString: @"/"] stringByAppendingString:file];
-	NSLog(@"copyDirectory source: %@", source);
-	NSError* err = nil;
-	if (![[NSFileManager defaultManager] copyItemAtPath:source toPath:destination error:&err])
-	{
-		NSLog(@"Error copying directory: %@", [err localizedDescription]);
-	}
-}
-
-- (void)createUserFoldersAtPath:(NSString*)path
-{
-	std::string directory([path cStringUsingEncoding:NSUTF8StringEncoding]);
-	UICommon::SetUserDirectory(directory);
-	UICommon::CreateDirectories();
-}
+static CAEAGLLayer *renderLayer = nil;
 
 #pragma mark - Host Calls
 
@@ -178,7 +44,10 @@ Common::Event updateMainFrameEvent;
 void Host_Message(int Id)
 {
 	if (Id == WM_USER_JOB_DISPATCH) {
-		updateMainFrameEvent.Set();
+		dispatch_async(dispatch_get_main_queue(), ^{
+			updateMainFrameEvent.Set();
+			Core::HostDispatchJobs();
+		});
 	}
 }
 
@@ -215,7 +84,7 @@ void ConsoleListener::Log(LogTypes::LOG_LEVELS level, const char* text)
 
 void* Host_GetRenderHandle()
 {
-	return (__bridge void*)renderView;
+	return (__bridge void *)renderLayer;
 }
 
 void Host_UpdateTitle(const std::string& title)
@@ -277,6 +146,138 @@ void Host_ShowVideoConfig(void*, const std::string&, const std::string&)
 {
 }
 
+@implementation DolphinBridge : NSObject
 
+- (id)init
+{
+	if (self = [super init]) {
+		[self createUserFoldersAtPath:[AppDelegate libraryPath]];
+		[self copyResourcesToPath:[AppDelegate documentsPath]];
+		[self saveDefaultPreferences]; // Save every run until a settings ui is implemented.
+	}
+	return self;
+}
+
+- (void)openRomAtPath:(NSString* )path inLayer:(CAEAGLLayer *)layer
+{
+	renderLayer = layer;
+	NSLog(@"Loading game at path: %@", path);
+	UICommon::Init();
+	SConfig::GetInstance().m_FrameSkip = 9;
+	if (BootManager::BootCore([path UTF8String]))
+	{
+		NSLog(@"Booted Core");
+	}
+	else
+	{
+		NSLog(@"Unable to boot");
+		return;
+	}
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+		while (!Core::IsRunning())
+		{
+			NSLog(@"Waiting for run");
+			usleep(100000);
+		}
+		while (Core::IsRunning())
+		{
+			updateMainFrameEvent.Wait();
+			Core::HostDispatchJobs();
+		}
+		UICommon::Shutdown();
+	});
+}
+
+- (void)saveDefaultPreferences
+{
+	// Must use std::string when passing in strings to config
+	// If you don't, the string will be passed as a bool and will always
+	// Evaluate to true
+
+	// Dolphin
+	IniFile dolphinConfig;
+	dolphinConfig.Load(File::GetUserPath(D_CONFIG_IDX) + "Dolphin.ini");
+	BOOL useJIT = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseJIT"];
+	dolphinConfig.GetOrCreateSection("Core")->Set("CPUCore", useJIT ? PowerPC::CORE_JITARM64 : PowerPC::CORE_CACHEDINTERPRETER);
+	dolphinConfig.GetOrCreateSection("Core")->Set("CPUThread", YES);
+	dolphinConfig.GetOrCreateSection("Core")->Set("Fastmem", NO);
+	dolphinConfig.GetOrCreateSection("Core")->Set("GFXBackend", std::string("OGL"));
+	dolphinConfig.GetOrCreateSection("Core")->Set("FrameSkip", 5);
+
+	int scale = [UIScreen mainScreen].scale;
+	CGSize renderWindowSize = CGSizeMake(renderLayer.frame.size.width * scale, renderLayer.frame.size.height * scale);
+	dolphinConfig.GetOrCreateSection("Display")->Set("RenderWindowWidth", (int)renderWindowSize.width);
+	dolphinConfig.GetOrCreateSection("Display")->Set("RenderWindowHeight", (int)renderWindowSize.height);
+	dolphinConfig.Save(File::GetUserPath(D_CONFIG_IDX) + "Dolphin.ini");
+
+	// OpenGL
+	IniFile oglConfig;
+	oglConfig.Load(File::GetUserPath(D_CONFIG_IDX) + "gfx_opengl.ini");
+
+	IniFile::Section* oglSettings = oglConfig.GetOrCreateSection("Settings");
+	oglSettings->Set("ShowFPS", YES);
+	oglSettings->Set("ExtendedFPSInfo", YES);
+	oglSettings->Set("EFBScale", 2);
+	oglSettings->Set("MSAA", 0);
+	oglSettings->Set("EnablePixelLighting", YES);
+	oglSettings->Set("DisableFog", NO);
+
+	IniFile::Section* oglEnhancements = oglConfig.GetOrCreateSection("Enhancements");
+	oglEnhancements->Set("MaxAnisotropy", 0);
+	oglEnhancements->Set("ForceFiltering", YES);
+	oglEnhancements->Set("StereoSwapEyes", NO);
+	oglEnhancements->Set("StereoMode", 0);
+	oglEnhancements->Set("StereoDepth", 20);
+	oglEnhancements->Set("StereoConvergence", 20);
+
+	IniFile::Section* oglHacks = oglConfig.GetOrCreateSection("Hacks");
+	oglHacks->Set("EFBScaledCopy", YES);
+	oglHacks->Set("EFBAccessEnable", NO);
+	oglHacks->Set("EFBEmulateFormatChanges", NO);
+	oglHacks->Set("EFBCopyEnable", NO);
+	oglHacks->Set("EFBToTextureEnable", YES);
+	oglHacks->Set("EFBCopyCacheEnable", YES);
+
+	oglConfig.Save(File::GetUserPath(D_CONFIG_IDX) + "gfx_opengl.ini");
+
+	// Move Controller Settings
+	NSString *configPath = [NSString stringWithCString:File::GetUserPath(D_CONFIG_IDX).c_str()
+	                                          encoding:NSUTF8StringEncoding];
+	[self copyBundleDirectoryOrFile:@"Config/GCPadNew.ini" toPath:[configPath stringByAppendingPathComponent:@"GCPadNew.ini"]];
+	[self copyBundleDirectoryOrFile:@"Config/WiimoteNew.ini" toPath:[configPath stringByAppendingPathComponent:@"WiimoteNew.ini.ini"]];
+}
+
+-(void)copyResourcesToPath:(NSString*)resourcesPath
+{
+	NSFileManager* fileManager = [NSFileManager defaultManager];
+	if (![fileManager fileExistsAtPath: [resourcesPath stringByAppendingString:@"GC"]])
+	{
+		NSLog(@"Copying GC folder...");
+		[self copyBundleDirectoryOrFile:@"GC" toPath:resourcesPath];
+	}
+	if (![fileManager fileExistsAtPath: [resourcesPath stringByAppendingString:@"Shaders"]])
+	{
+		NSLog(@"Copying Shaders folder...");
+		[self copyBundleDirectoryOrFile:@"Shaders" toPath:resourcesPath];
+	}
+}
+
+- (void)copyBundleDirectoryOrFile:(NSString* )file toPath:(NSString*)destination
+{
+	NSString* source = [[[[NSBundle mainBundle] resourcePath] stringByAppendingString: @"/"] stringByAppendingString:file];
+	NSLog(@"copyDirectory source: %@", source);
+	NSError* err = nil;
+	if (![[NSFileManager defaultManager] copyItemAtPath:source toPath:destination error:&err])
+	{
+		NSLog(@"Error copying directory: %@", [err localizedDescription]);
+	}
+}
+
+- (void)createUserFoldersAtPath:(NSString*)path
+{
+	std::string directory([path cStringUsingEncoding:NSUTF8StringEncoding]);
+	UICommon::SetUserDirectory(directory);
+	UICommon::CreateDirectories();
+}
 
 @end

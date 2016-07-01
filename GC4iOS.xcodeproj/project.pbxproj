@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C01365D1D2426C900FCF5C1 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01365C1D2426C900FCF5C1 /* libcurl.a */; };
+		4C01365F1D2426EE00FCF5C1 /* libvideonull.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01365E1D2426EE00FCF5C1 /* libvideonull.a */; };
 		CA418DFF1D09BEA2001B7664 /* DolphinBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA418DEF1D09BEA2001B7664 /* DolphinBridge.mm */; };
 		CA418E001D09BEA2001B7664 /* DolphinGame.m in Sources */ = {isa = PBXBuildFile; fileRef = CA418DF11D09BEA2001B7664 /* DolphinGame.m */; };
 		CA418E011D09BEA2001B7664 /* GCAdapteriOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA418DF31D09BEA2001B7664 /* GCAdapteriOS.cpp */; };
@@ -109,6 +111,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C01365C1D2426C900FCF5C1 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = Dolphin/libcurl.a; sourceTree = "<group>"; };
+		4C01365E1D2426EE00FCF5C1 /* libvideonull.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvideonull.a; path = Dolphin/libvideonull.a; sourceTree = "<group>"; };
 		CA418D7E1D09BE56001B7664 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../dolphin/Build/DolphiniOS/Info.plist; sourceTree = "<group>"; };
 		CA418DEE1D09BEA2001B7664 /* DolphinBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DolphinBridge.h; sourceTree = "<group>"; };
 		CA418DEF1D09BEA2001B7664 /* DolphinBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DolphinBridge.mm; sourceTree = "<group>"; usesTabs = 1; };
@@ -223,6 +227,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C01365F1D2426EE00FCF5C1 /* libvideonull.a in Frameworks */,
+				CA418EA51D09C044001B7664 /* libaudiocommon.a in Frameworks */,
+				CA418EA61D09C044001B7664 /* libbdisasm.a in Frameworks */,
+				CA418EA71D09C044001B7664 /* libcommon.a in Frameworks */,
+				CA418EA81D09C044001B7664 /* libcore.a in Frameworks */,
+				4C01365D1D2426C900FCF5C1 /* libcurl.a in Frameworks */,
+				CA418EA91D09C044001B7664 /* libdiscio.a in Frameworks */,
+				CA418EAA1D09C044001B7664 /* libenet.a in Frameworks */,
+				CA418EAB1D09C044001B7664 /* libgtest.a in Frameworks */,
+				CA418EAC1D09C044001B7664 /* libinputcommon.a in Frameworks */,
+				CA418EAD1D09C044001B7664 /* liblzo2.a in Frameworks */,
+				CA418EAE1D09C044001B7664 /* libmbedcrypto.a in Frameworks */,
+				CA418EAF1D09C044001B7664 /* libmbedtls.a in Frameworks */,
+				CA418EB01D09C044001B7664 /* libmbedx509.a in Frameworks */,
+				CA418EB11D09C044001B7664 /* libpng.a in Frameworks */,
+				CA418EB21D09C044001B7664 /* libsfml-network.a in Frameworks */,
+				CA418EB31D09C044001B7664 /* libsfml-system.a in Frameworks */,
+				CA418EB41D09C044001B7664 /* libSOIL.a in Frameworks */,
+				CA418EB51D09C044001B7664 /* libSoundTouch.a in Frameworks */,
+				CA418EB61D09C044001B7664 /* libuicommon.a in Frameworks */,
+				CA418EB71D09C044001B7664 /* libvideocommon.a in Frameworks */,
+				CA418EB81D09C044001B7664 /* libvideoogl.a in Frameworks */,
+				CA418EB91D09C044001B7664 /* libvideosoftware.a in Frameworks */,
+				CA418EBA1D09C044001B7664 /* libxxhash.a in Frameworks */,
 				CA598BF61D0A292C009F403C /* MediaPlayer.framework in Frameworks */,
 				CA418ED31D09C38A001B7664 /* CoreMedia.framework in Frameworks */,
 				CA418ED11D09C385001B7664 /* GameController.framework in Frameworks */,
@@ -234,28 +262,6 @@
 				CA418EC51D09C35F001B7664 /* CoreAudio.framework in Frameworks */,
 				CA418EBE1D09C077001B7664 /* libiconv.tbd in Frameworks */,
 				CA418EBC1D09C055001B7664 /* libz.tbd in Frameworks */,
-				CA418EB91D09C044001B7664 /* libvideosoftware.a in Frameworks */,
-				CA418EAF1D09C044001B7664 /* libmbedtls.a in Frameworks */,
-				CA418EA81D09C044001B7664 /* libcore.a in Frameworks */,
-				CA418EA91D09C044001B7664 /* libdiscio.a in Frameworks */,
-				CA418EAD1D09C044001B7664 /* liblzo2.a in Frameworks */,
-				CA418EB31D09C044001B7664 /* libsfml-system.a in Frameworks */,
-				CA418EA71D09C044001B7664 /* libcommon.a in Frameworks */,
-				CA418EB41D09C044001B7664 /* libSOIL.a in Frameworks */,
-				CA418EB51D09C044001B7664 /* libSoundTouch.a in Frameworks */,
-				CA418EB01D09C044001B7664 /* libmbedx509.a in Frameworks */,
-				CA418EA51D09C044001B7664 /* libaudiocommon.a in Frameworks */,
-				CA418EA61D09C044001B7664 /* libbdisasm.a in Frameworks */,
-				CA418EB21D09C044001B7664 /* libsfml-network.a in Frameworks */,
-				CA418EB71D09C044001B7664 /* libvideocommon.a in Frameworks */,
-				CA418EAE1D09C044001B7664 /* libmbedcrypto.a in Frameworks */,
-				CA418EAB1D09C044001B7664 /* libgtest.a in Frameworks */,
-				CA418EB61D09C044001B7664 /* libuicommon.a in Frameworks */,
-				CA418EB81D09C044001B7664 /* libvideoogl.a in Frameworks */,
-				CA418EAA1D09C044001B7664 /* libenet.a in Frameworks */,
-				CA418EBA1D09C044001B7664 /* libxxhash.a in Frameworks */,
-				CA418EAC1D09C044001B7664 /* libinputcommon.a in Frameworks */,
-				CA418EB11D09C044001B7664 /* libpng.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +462,8 @@
 		CA418ED41D09C38E001B7664 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C01365E1D2426EE00FCF5C1 /* libvideonull.a */,
+				4C01365C1D2426C900FCF5C1 /* libcurl.a */,
 				CA598BF51D0A292C009F403C /* MediaPlayer.framework */,
 				CA418EDA1D09C714001B7664 /* Resources */,
 				CA418ED21D09C38A001B7664 /* CoreMedia.framework */,
@@ -895,6 +903,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/GC4iOS/Supporting Files/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/GC4iOS",
@@ -920,6 +929,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/GC4iOS/Supporting Files/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/GC4iOS",
 					"$(SRCROOT)/Dolphin/Include",

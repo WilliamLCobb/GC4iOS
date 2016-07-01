@@ -18,9 +18,10 @@
 #include "InputCommon/ControllerInterface/ControllerInterface.h"
 #include "InputCommon/InputConfig.h"
 
-@interface EmulatorViewController () <GLKViewDelegate, GCControllerViewDelegate> {
+@interface EmulatorViewController () <GCControllerViewDelegate> {
 	DolphinBridge*		bridge;
 	GCControllerView*	controllerView;
+	CAEAGLLayer			*renderLayer;
 }
 
 @property (strong, nonatomic) EAGLContext* context;
@@ -32,17 +33,20 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.view.backgroundColor = [UIColor blackColor];
+	self.view.backgroundColor = [UIColor whiteColor];
 
 	bridge = [DolphinBridge new];
+
 	
 	// Add GLKView
-	CGSize screenSize = [self currentScreenSizeAlwaysLandscape:YES];
-	CGSize emulatorSize = CGSizeMake(screenSize.height * 1.21212, screenSize.height);
-	self.glkView = [[GLKView alloc] initWithFrame:CGRectMake((screenSize.width - emulatorSize.width)/2, 0, emulatorSize.width, emulatorSize.height)];
-	[self.view addSubview:self.glkView];
+	
+	renderLayer = [CAEAGLLayer layer];
+	renderLayer.opaque = YES;
+	renderLayer.contentsScale = [[UIScreen mainScreen] scale];
+	[self.view.layer addSublayer:renderLayer];
 
 	// Add controller View
+    CGSize screenSize = [self currentScreenSizeAlwaysLandscape:YES];
 	controllerView = [[GCControllerView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
 	controllerView.delegate = self;
 	[self.view addSubview:controllerView];
@@ -50,8 +54,13 @@
 
 - (void)launchGame:(DolphinGame* )game
 {
-	[bridge openRomAtPath:game.path inView:self.glkView];
+	[bridge openRomAtPath:game.path inLayer:renderLayer];
 	[self initController];
+}
+
+- (void)viewWillLayoutSubviews
+{;
+    renderLayer.frame = self.view.layer.bounds;
 }
 
 #pragma mark - Controller Delegate

@@ -8,8 +8,6 @@
 @class DolphinGame;
 @interface EmulatorViewController : UIViewController
 
-@property IBOutlet GLKView* glkView;
-
 - (void)launchGame:(DolphinGame*)game;
 
 @end
