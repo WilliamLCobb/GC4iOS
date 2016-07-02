@@ -27,7 +27,7 @@
 	{
 		NSFileManager* fm = [NSFileManager defaultManager];
 		if ([url.pathExtension.lowercaseString isEqualToString:@"iso"] ||
-		    [url.pathExtension.lowercaseString isEqualToString:@"dol"])
+		    [url.pathExtension.lowercaseString isEqualToString:@"gcm"])
 		{
 			[fm moveItemAtPath:url.path toPath:[[AppDelegate documentsPath] stringByAppendingPathComponent:url.lastPathComponent] error:nil];
 			return YES;

@@ -30,6 +30,14 @@
 														callback:^{
 															[self reloadGames:self];
 														}];
+    
+    // Add footer with info
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 400)];
+    UILabel * infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 20, self.view.frame.size.width - 28, 400)];
+    infoLabel.text = @"To add GameCube ROMs, open them with GC4iOS from another app such as Dropbox. You can also add ROMs through iTunes.\n\nGames may crash at launch. If this happens try reopening the app and relaunching the game a few more times.\n\nGames are still very slow. Even though the OpenGL Renderer and JIT Recompiler are working, there are still a few improvements left to make before games will run at a playable speed.";
+    infoLabel.numberOfLines = 0;
+    infoLabel.textAlignment = NSTextAlignmentCenter;
+    [self.tableView.tableFooterView addSubview:infoLabel];
 }
 
 - (void)didReceiveMemoryWarning
