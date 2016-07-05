@@ -202,6 +202,10 @@ void Host_ShowVideoConfig(void*, const std::string&, const std::string&)
 	dolphinConfig.GetOrCreateSection("Core")->Set("Fastmem", NO);
 	dolphinConfig.GetOrCreateSection("Core")->Set("GFXBackend", std::string("OGL"));
 	dolphinConfig.GetOrCreateSection("Core")->Set("FrameSkip", 5); //Doesn't work?
+	
+	//Reset paths so Dolphin will search again
+	dolphinConfig.GetOrCreateSection("Core")->Set("MemcardAPath", std::string(""));
+	dolphinConfig.GetOrCreateSection("Core")->Set("MemcardBPath", std::string(""));
 
 	int scale = [UIScreen mainScreen].scale;
 	CGSize renderWindowSize = CGSizeMake(renderLayer.frame.size.width * scale, renderLayer.frame.size.height * scale);
