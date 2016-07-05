@@ -645,8 +645,9 @@
 		CAB660471D09B9D600037854 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = GC4iOS;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = WilliamCobb;
+				ORGANIZATIONNAME = GC4iOS;
 				TargetAttributes = {
 					CAB6604E1D09B9D600037854 = {
 						CreatedOnToolsVersion = 7.3;
@@ -917,7 +918,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Dolphin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = WilliamCobb.GC4iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WilliamCobb.GC4iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -943,7 +944,7 @@
 					"$(PROJECT_DIR)/Dolphin",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = WilliamCobb.GC4iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WilliamCobb.GC4iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
