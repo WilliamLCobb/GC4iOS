@@ -84,7 +84,6 @@
 		CA598BF61D0A292C009F403C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA598BF51D0A292C009F403C /* MediaPlayer.framework */; };
 		CA85B9931D09D30F00CE8F95 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA85B9901D09D30F00CE8F95 /* Entitlements.plist */; };
 		CA85B9951D09D30F00CE8F95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA85B9921D09D30F00CE8F95 /* main.m */; };
-		CA85B9991D09D35100CE8F95 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA85B9981D09D35100CE8F95 /* Info.plist */; };
 		CAB660571D09B9D600037854 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB660561D09B9D600037854 /* AppDelegate.m */; };
 		CAB6605D1D09B9D600037854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAB6605B1D09B9D600037854 /* Main.storyboard */; };
 		CAB6605F1D09B9D600037854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB6605E1D09B9D600037854 /* Assets.xcassets */; };
@@ -646,12 +645,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GC4iOS;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = GC4iOS;
 				TargetAttributes = {
 					CAB6604E1D09B9D600037854 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = MRGX8T9A4Y;
+						DevelopmentTeam = EYJDE3N63W;
 					};
 					CAB660671D09B9D600037854 = {
 						CreatedOnToolsVersion = 7.3;
@@ -698,7 +697,6 @@
 				CAB660621D09B9D600037854 /* LaunchScreen.storyboard in Resources */,
 				CA418E461D09BEE2001B7664 /* gcpad_c_pressed@2x.png in Resources */,
 				CA418E421D09BEE2001B7664 /* gcpad_a_pressed@2x.png in Resources */,
-				CA85B9991D09D35100CE8F95 /* Info.plist in Resources */,
 				CA418E571D09BEE2001B7664 /* gcpad_start@2x.png in Resources */,
 				CAB6605F1D09B9D600037854 /* Assets.xcassets in Resources */,
 				CA418E431D09BEE2001B7664 /* gcpad_b@2x.png in Resources */,
@@ -900,6 +898,10 @@
 		CAB6607D1D09B9D600037854 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ICON_SET_SUFFIX}";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/GC4iOS/Supporting Files/Entitlements.plist";
@@ -918,18 +920,24 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Dolphin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.WilliamCobb.GC4iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.EpicDarknesGamer.GC4iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
 		CAB6607E1D09B9D600037854 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ICON_SET_SUFFIX}";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/GC4iOS/Supporting Files/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/GC4iOS",
@@ -944,8 +952,9 @@
 					"$(PROJECT_DIR)/Dolphin",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.WilliamCobb.GC4iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.EpicDarknesGamer.GC4iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};

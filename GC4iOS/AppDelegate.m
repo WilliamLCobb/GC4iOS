@@ -3,6 +3,7 @@
 // Refer to the license.txt provided
 
 #import "AppDelegate.h"
+#import "LZMAExtractor.h"
 
 @implementation AppDelegate
 
