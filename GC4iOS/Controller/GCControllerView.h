@@ -12,7 +12,7 @@
 
 @interface GCControllerView : UIView
 {
-	NSMutableArray* buttons;
+    NSMutableArray* buttons;
 }
 
 @property uint16_t  buttonState;

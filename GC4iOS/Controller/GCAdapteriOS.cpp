@@ -44,32 +44,32 @@ void StopScanThread()
 
 void Input(int chan, GCPadStatus* pad)
 {
-	printf("Input!\n");
+    printf("Input!\n");
 }
 
 void Output(int chan, u8 rumble_command)
 {
-	printf("Output!\n");
+    printf("Output!\n");
 }
 
 bool IsDetected()
 {
-	return 1;
+    return 1;
 }
-	
+    
 bool IsDriverDetected()
 {
-	return true;
+    return true;
 }
-	
+    
 bool DeviceConnected(int chan)
 {
-	return 1;
+    return 1;
 }
 
 bool UseAdapter()
 {
-	return 1;
+    return 1;
 }
 
 void ResetRumble()

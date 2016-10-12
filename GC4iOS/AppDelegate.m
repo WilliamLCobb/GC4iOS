@@ -8,68 +8,68 @@
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-	if (![[NSFileManager defaultManager] fileExistsAtPath:[AppDelegate documentsPath]])
-	{
-		[[NSFileManager defaultManager] createDirectoryAtPath:[AppDelegate documentsPath]
-		                          withIntermediateDirectories:YES
-		                                           attributes:nil
-		                                                error:nil];
-	}
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[AppDelegate documentsPath]])
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:[AppDelegate documentsPath]
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:nil];
+    }
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-	syscall(26, -1, 0, 0, 0); //Allows mapping executable pages for JIT
-	return YES;
+    syscall(26, -1, 0, 0, 0); //Allows mapping executable pages for JIT
+    return YES;
 }
 
 - (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
 {
-	if (url.isFileURL && [[NSFileManager defaultManager] fileExistsAtPath:url.path])
-	{
-		NSFileManager* fm = [NSFileManager defaultManager];
-		if ([url.pathExtension.lowercaseString isEqualToString:@"iso"] ||
-		    [url.pathExtension.lowercaseString isEqualToString:@"gcm"])
-		{
-			[fm moveItemAtPath:url.path toPath:[[AppDelegate documentsPath] stringByAppendingPathComponent:url.lastPathComponent] error:nil];
-			return YES;
-		}
-		else
-		{
-			NSLog(@"Invalid File: %@", url.pathExtension.lowercaseString);
-		}
-	}
-	else
-	{
-		NSLog(@"Unable to open file: %@", url.path);
-	}
-	[[NSFileManager defaultManager] removeItemAtPath:url.path error:NULL];
-	return NO;
+    if (url.isFileURL && [[NSFileManager defaultManager] fileExistsAtPath:url.path])
+    {
+        NSFileManager* fm = [NSFileManager defaultManager];
+        if ([url.pathExtension.lowercaseString isEqualToString:@"iso"] ||
+            [url.pathExtension.lowercaseString isEqualToString:@"gcm"])
+        {
+            [fm moveItemAtPath:url.path toPath:[[AppDelegate documentsPath] stringByAppendingPathComponent:url.lastPathComponent] error:nil];
+            return YES;
+        }
+        else
+        {
+            NSLog(@"Invalid File: %@", url.pathExtension.lowercaseString);
+        }
+    }
+    else
+    {
+        NSLog(@"Unable to open file: %@", url.path);
+    }
+    [[NSFileManager defaultManager] removeItemAtPath:url.path error:NULL];
+    return NO;
 }
 
 +(NSString*)libraryPath
 {
-	return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 }
 
 +(NSString*)documentsPath
 {
-	if ([self isSystemApplication])
-	{
-		return [[self rootDocumentsPath] stringByAppendingPathComponent:@"GC4iOS"];
-	}
-	else
-	{
-		return [self rootDocumentsPath];
-	}
+    if ([self isSystemApplication])
+    {
+        return [[self rootDocumentsPath] stringByAppendingPathComponent:@"GC4iOS"];
+    }
+    else
+    {
+        return [self rootDocumentsPath];
+    }
 }
 
 +(NSString*)rootDocumentsPath
 {
-	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 }
 
 +(BOOL)isSystemApplication
 {
-	return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] pathComponents].count == 4;
+    return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] pathComponents].count == 4;
 }
 
 

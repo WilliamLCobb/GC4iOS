@@ -6,16 +6,16 @@
 
 typedef NS_ENUM(NSInteger, WCDirectionalControlDirection)
 {
-	WCDirectionalControlDirectionLeft   = 1,
-	WCDirectionalControlDirectionRight  = 2,
-	WCDirectionalControlDirectionDown   = 4,
-	WCDirectionalControlDirectionUp     = 8,
+    WCDirectionalControlDirectionLeft   = 1,
+    WCDirectionalControlDirectionRight  = 2,
+    WCDirectionalControlDirectionDown   = 4,
+    WCDirectionalControlDirectionUp     = 8,
 };
 
 typedef NS_ENUM(NSInteger, WCDirectionalControlStyle)
 {
-	WCDirectionalControlStyleDPad = 0,
-	WCDirectionalControlStyleJoystick = 1,
+    WCDirectionalControlStyleDPad = 0,
+    WCDirectionalControlStyleJoystick = 1,
 };
 
 @interface WCDirectionalControl : UIControl

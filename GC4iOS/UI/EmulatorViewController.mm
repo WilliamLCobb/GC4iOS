@@ -19,9 +19,9 @@
 #include "InputCommon/InputConfig.h"
 
 @interface EmulatorViewController () <GCControllerViewDelegate> {
-	DolphinBridge*		bridge;
-	GCControllerView*	controllerView;
-	CAEAGLLayer			*renderLayer;
+    DolphinBridge*        bridge;
+    GCControllerView*    controllerView;
+    CAEAGLLayer            *renderLayer;
 }
 
 @property (strong, nonatomic) EAGLContext* context;
@@ -31,35 +31,35 @@
 @implementation EmulatorViewController
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+    [super viewDidLoad];
 
-	self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 
-	bridge = [DolphinBridge new];
+    bridge = [DolphinBridge new];
 
-	
-	// Add GLKView
-	
-	renderLayer = [CAEAGLLayer layer];
-	renderLayer.opaque = YES;
-	renderLayer.contentsScale = [[UIScreen mainScreen] scale];
-	[self.view.layer addSublayer:renderLayer];
+    
+    // Add GLKView
+    
+    renderLayer = [CAEAGLLayer layer];
+    renderLayer.opaque = YES;
+    renderLayer.contentsScale = [[UIScreen mainScreen] scale];
+    [self.view.layer addSublayer:renderLayer];
 
-	// Add controller View
+    // Add controller View
     CGSize screenSize = [self currentScreenSizeAlwaysLandscape:YES];
-	controllerView = [[GCControllerView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
-	controllerView.delegate = self;
-	[self.view addSubview:controllerView];
+    controllerView = [[GCControllerView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
+    controllerView.delegate = self;
+    [self.view addSubview:controllerView];
 }
 
 - (void)launchGame:(DolphinGame* )game
 {
-	[bridge openRomAtPath:game.path inLayer:renderLayer];
-	[self initController];
+    [bridge openRomAtPath:game.path inLayer:renderLayer];
+    [self initController];
 }
 
 - (void)viewWillLayoutSubviews
-{;
+{
     renderLayer.frame = self.view.layer.bounds;
 }
 
@@ -85,13 +85,13 @@ void GCPad::GetInput(GCPadStatus* const pad)
 // Create a new class to handle the controller later
 - (void)joystick:(NSInteger)joyid movedToPosition:(CGPoint)joyPosition
 {
-	joyData[joyid].x = joyPosition.x * 126 + 127;
-	joyData[joyid].y = joyPosition.y * 126 + 127;
+    joyData[joyid].x = joyPosition.x * 126 + 127;
+    joyData[joyid].y = joyPosition.y * 126 + 127;
 }
 
 - (void)buttonStateChanged:(u16)bState
 {
-	buttonState = bState;
+    buttonState = bState;
 }
 
 - (void)initController
@@ -102,32 +102,32 @@ void GCPad::GetInput(GCPadStatus* const pad)
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-	return UIInterfaceOrientationMaskLandscape;
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 - (CGSize)currentScreenSizeAlwaysLandscape:(BOOL)portrait
 {
-	if (!portrait)
-		return [UIScreen mainScreen].bounds.size;
-	// Get portrait size
-	CGRect screenBounds = [UIScreen mainScreen].bounds ;
-	CGFloat width = CGRectGetWidth(screenBounds);
-	CGFloat height = CGRectGetHeight(screenBounds);
-	if (![self isPortrait])
-	{
-		return CGSizeMake(width, height);
-	}
-	return CGSizeMake(height, width);
+    if (!portrait)
+        return [UIScreen mainScreen].bounds.size;
+    // Get portrait size
+    CGRect screenBounds = [UIScreen mainScreen].bounds ;
+    CGFloat width = CGRectGetWidth(screenBounds);
+    CGFloat height = CGRectGetHeight(screenBounds);
+    if (![self isPortrait])
+    {
+        return CGSizeMake(width, height);
+    }
+    return CGSizeMake(height, width);
 }
 
 - (BOOL)isPortrait
 {
-	return UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
+    return UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
 }
 
 - (void)didReceiveMemoryWarning
 {
-	[super didReceiveMemoryWarning];
+    [super didReceiveMemoryWarning];
 }
 
 @end
