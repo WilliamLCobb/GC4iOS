@@ -10,6 +10,8 @@ Only devices with 2GB of ram have been tested (iPhone 6s, ect). Devices with 1GB
 
 Please note this is an early alpha version. Without JIT, the emulator will not be fast enough to play any games at a playable speed.
 
+GC4iOS is licensed under the terms of the GNU General Public License, version 2 or later (GPLv2+).
+
 Installing GC4iOS
 ------------------------
 Download the source and open the project file in the root directory. Set your device as the build target and press build and run. 
