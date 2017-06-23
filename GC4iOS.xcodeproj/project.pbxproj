@@ -19,7 +19,6 @@
 		CA418E061D09BEA2001B7664 /* RomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA418DFE1D09BEA2001B7664 /* RomTableViewController.m */; };
 		CA418E181D09BEB9001B7664 /* MHWDirectoryWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA418E0A1D09BEB9001B7664 /* MHWDirectoryWatcher.m */; };
 		CA418E191D09BEB9001B7664 /* NSString+CompareToVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = CA418E0D1D09BEB9001B7664 /* NSString+CompareToVersion.m */; };
-		CA418E1A1D09BEB9001B7664 /* RBVolumeButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = CA418E0F1D09BEB9001B7664 /* RBVolumeButtons.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA418E1B1D09BEB9001B7664 /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = CA418E111D09BEB9001B7664 /* UIDevice+Private.m */; };
 		CA418E1C1D09BEB9001B7664 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA418E141D09BEB9001B7664 /* UIViewController+BackButtonHandler.m */; };
 		CA418E411D09BEE2001B7664 /* gcpad_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA418E211D09BEE2001B7664 /* gcpad_a@2x.png */; };
@@ -132,8 +131,6 @@
 		CA418E0A1D09BEB9001B7664 /* MHWDirectoryWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHWDirectoryWatcher.m; sourceTree = "<group>"; };
 		CA418E0C1D09BEB9001B7664 /* NSString+CompareToVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CompareToVersion.h"; sourceTree = "<group>"; };
 		CA418E0D1D09BEB9001B7664 /* NSString+CompareToVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CompareToVersion.m"; sourceTree = "<group>"; };
-		CA418E0E1D09BEB9001B7664 /* RBVolumeButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBVolumeButtons.h; sourceTree = "<group>"; };
-		CA418E0F1D09BEB9001B7664 /* RBVolumeButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBVolumeButtons.m; sourceTree = "<group>"; };
 		CA418E101D09BEB9001B7664 /* UIDevice+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Private.h"; sourceTree = "<group>"; };
 		CA418E111D09BEB9001B7664 /* UIDevice+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Private.m"; sourceTree = "<group>"; };
 		CA418E121D09BEB9001B7664 /* UITapticEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITapticEngine.h; sourceTree = "<group>"; };
@@ -343,8 +340,6 @@
 			children = (
 				CA418E0C1D09BEB9001B7664 /* NSString+CompareToVersion.h */,
 				CA418E0D1D09BEB9001B7664 /* NSString+CompareToVersion.m */,
-				CA418E0E1D09BEB9001B7664 /* RBVolumeButtons.h */,
-				CA418E0F1D09BEB9001B7664 /* RBVolumeButtons.m */,
 				CA418E101D09BEB9001B7664 /* UIDevice+Private.h */,
 				CA418E111D09BEB9001B7664 /* UIDevice+Private.m */,
 				CA418E121D09BEB9001B7664 /* UITapticEngine.h */,
@@ -645,12 +640,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GC4iOS;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = GC4iOS;
 				TargetAttributes = {
 					CAB6604E1D09B9D600037854 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = EYJDE3N63W;
+						DevelopmentTeam = 6WXZ7X2MFT;
 					};
 					CAB660671D09B9D600037854 = {
 						CreatedOnToolsVersion = 7.3;
@@ -754,7 +749,6 @@
 				CA418E011D09BEA2001B7664 /* GCAdapteriOS.cpp in Sources */,
 				CA418E001D09BEA2001B7664 /* DolphinGame.m in Sources */,
 				CA418E1B1D09BEB9001B7664 /* UIDevice+Private.m in Sources */,
-				CA418E1A1D09BEB9001B7664 /* RBVolumeButtons.m in Sources */,
 				CA418E051D09BEA2001B7664 /* GameTableView.m in Sources */,
 				CA418E191D09BEB9001B7664 /* NSString+CompareToVersion.m in Sources */,
 			);
@@ -825,8 +819,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -848,7 +844,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -870,8 +866,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -887,7 +885,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -898,14 +896,11 @@
 		CAB6607D1D09B9D600037854 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ICON_SET_SUFFIX}";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/GC4iOS/Supporting Files/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6WXZ7X2MFT;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				HEADER_SEARCH_PATHS = (
@@ -913,7 +908,7 @@
 					"$(SRCROOT)/Dolphin/Include",
 				);
 				INFOPLIST_FILE = GC4iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -929,22 +924,19 @@
 		CAB6607E1D09B9D600037854 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ICON_SET_SUFFIX}";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/GC4iOS/Supporting Files/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6WXZ7X2MFT;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/GC4iOS",
 					"$(SRCROOT)/Dolphin/Include",
 				);
 				INFOPLIST_FILE = GC4iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

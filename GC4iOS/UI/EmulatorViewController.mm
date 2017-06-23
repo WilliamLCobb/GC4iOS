@@ -130,4 +130,8 @@ void GCPad::GetInput(GCPadStatus* const pad)
     [super didReceiveMemoryWarning];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+	return UIStatusBarStyleLightContent;
+}
+
 @end
