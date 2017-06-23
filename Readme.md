@@ -2,7 +2,7 @@
 
 GC4iOS
 =======
-###### Supports iOS 8.1 and up. 64 bit devices only.
+###### Supports iOS 9.3 and up. 64 bit devices only.
 
 Currently GC4iOS uses Dolphin's' PowerPC Interpreter and an OpenGL backend. Most games can be loaded and run between 3 and 20 fps. 
 
