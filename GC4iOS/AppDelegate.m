@@ -3,7 +3,6 @@
 // Refer to the license.txt provided
 
 #import "AppDelegate.h"
-#import "LZMAExtractor.h"
 
 @implementation AppDelegate
 
@@ -16,8 +15,7 @@
                                                    attributes:nil
                                                         error:nil];
     }
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]]; 
     syscall(26, -1, 0, 0, 0); //Allows mapping executable pages for JIT
     return YES;
 }
