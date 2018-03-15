@@ -80,13 +80,16 @@ void GCPad::GetInput(GCPadStatus* const pad)
     
     pad->substickX = (uint8_t)joyData[1].x;
     pad->substickY = (uint8_t)joyData[1].y;
+   
+    pad->triggerLeft = buttonState * 2;
+    pad->triggerRight = buttonState * 100;
 }
 
 // Create a new class to handle the controller later
 - (void)joystick:(NSInteger)joyid movedToPosition:(CGPoint)joyPosition
 {
-    joyData[joyid].x = joyPosition.x * 126 + 127;
-    joyData[joyid].y = joyPosition.y * 126 + 127;
+    joyData[joyid].x = joyPosition.x * 127 + 128;
+    joyData[joyid].y = joyPosition.y * 127 + 128;
 }
 
 - (void)buttonStateChanged:(u16)bState
