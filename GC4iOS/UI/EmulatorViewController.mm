@@ -66,7 +66,7 @@
 #pragma mark - Controller Delegate
 
 u16 buttonState;
-CGPoint joyData[2];
+CGPoint joyData[2] = {127.5,127.5,127.5,127.5};
 
 ////This is a terrible hack. We need to configure dolphin to use a custom controller not just override this function
 void GCPad::GetInput(GCPadStatus* const pad)
@@ -85,8 +85,8 @@ void GCPad::GetInput(GCPadStatus* const pad)
 // Create a new class to handle the controller later
 - (void)joystick:(NSInteger)joyid movedToPosition:(CGPoint)joyPosition
 {
-    joyData[joyid].x = joyPosition.x * 126 + 127;
-    joyData[joyid].y = joyPosition.y * 126 + 127;
+    joyData[joyid].x = joyPosition.x * 127 + 128;
+    joyData[joyid].y = joyPosition.y * 127 + 128;
 }
 
 - (void)buttonStateChanged:(u16)bState
